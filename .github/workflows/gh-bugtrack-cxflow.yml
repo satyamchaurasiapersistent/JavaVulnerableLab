@@ -47,7 +47,7 @@ jobs:
             recurrent: Recurrent
             new: New
             medium: Medium
-            hi_me: High, Medium
+            hi_me: High,Medium
         shell: bash
         run:  | 
           echo github_branch ${github_branch#refs/heads/}
