@@ -44,12 +44,20 @@ jobs:
             toverify: To Verify
             cfm: Confirmed
             ne: Not Exploitable
+            recurrent: Recurrent
+            new: New
+            medium: Medium
         shell: bash
         run:  | 
           echo github_branch ${github_branch#refs/heads/}
           echo state ${cfm}
+          echo status ${new}
+          echo severity ${medium}
           echo "::set-output name=branch::${github_branch#refs/heads/}"
           echo "::set-output name=state::${cfm}"
+          echo "::set-output name=status::${recurrent}"
+          echo "::set-output name=severity::${medium}"
+          
         id: myvars
         
       - name: print vars
@@ -60,6 +68,8 @@ jobs:
           echo branch for cxflow parameter ${{inputs.branch}}
           echo branch for project name ${{steps.myvars.outputs.branch}}
           echo state for filtering "${{steps.myvars.outputs.state}}"
+          echo status for filtering "${{steps.myvars.outputs.status}}"
+          echo severity for filtering "${{steps.myvars.outputs.severity}}"
           
           
           
@@ -87,7 +97,7 @@ jobs:
     # Select a Checkmarx Preset
           preset: 'Checkmarx Express'
     # Break build based on Checkmarx findings?
-          break_build: false  # optional
+          break_build: true  # optional
     # Bug tracker for the scan results.
           bug_tracker: ${{ inputs.bugtracker}}
     # Incremental Scans?
@@ -97,11 +107,12 @@ jobs:
                   --repo-name=${{ github.event.repository.name }}
                   --merge-id=${{ github.event.number }}
                   --namespace=${{ github.repository_owner }}
-                  --cx-flow.filter-state=${{steps.myvars.outputs.state}}
-                  --sca.filter-severity=High
+                  --cx-flow.filter-state=${{ steps.myvars.outputs.state }}
+                  --cx-flow.filter-status=${{ steps.myvars.outputs.status }}
+                  --sca.filter-severity=${{ steps.myvars.outputs.severity }}
                   --sca.filter-score=9.0
-    #              --cx-flow.filter-severity=""
-    #              --cx-flow.filter-category=""
+                  --cx-flow.filter-severity=${{ steps.myvars.outputs.severity }}
+    #             --cx-flow.filter-category=""
     #             --sca.includeSources=true
     #             --sca.enabledZipScan=true
     # GitHub API Token
