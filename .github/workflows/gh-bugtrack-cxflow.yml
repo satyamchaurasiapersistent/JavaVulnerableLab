@@ -55,7 +55,7 @@ jobs:
           echo severity ${medium}
           echo "::set-output name=branch::${github_branch#refs/heads/}"
           echo "::set-output name=state::${cfm}"
-          echo "::set-output name=status::${new}"
+          echo "::set-output name=status::${recurrent}"
           echo "::set-output name=severity::${medium}"
           
         id: myvars
@@ -68,6 +68,8 @@ jobs:
           echo branch for cxflow parameter ${{inputs.branch}}
           echo branch for project name ${{steps.myvars.outputs.branch}}
           echo state for filtering "${{steps.myvars.outputs.state}}"
+          echo status for filtering "${{steps.myvars.outputs.status}}"
+          echo severity for filtering "${{steps.myvars.outputs.severity}}"
           
           
           
