@@ -50,11 +50,11 @@ jobs:
         shell: bash
         run:  | 
           echo github_branch ${github_branch#refs/heads/}
-          echo state ${ne}
-          echo status ${new}
+          echo state ${cfm}
+          echo status ${recurrent}
           echo severity ${medium}
           echo "::set-output name=branch::${github_branch#refs/heads/}"
-          echo "::set-output name=state::${ne}"
+          echo "::set-output name=state::${cfm}"
           echo "::set-output name=status::${recurrent}"
           echo "::set-output name=severity::${medium}"
           
