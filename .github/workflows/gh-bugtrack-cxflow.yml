@@ -56,8 +56,8 @@ jobs:
           echo severity ${hi_me}
           echo "::set-output name=branch::${github_branch#refs/heads/}"
           echo "::set-output name=state::${cfm}"
-          echo "::set-output name=status::${hi_me}"
-          echo "::set-output name=severity::${medium}"
+          echo "::set-output name=status::${recurrent}"
+          echo "::set-output name=severity::${hi_me}"
           
         id: myvars
         
@@ -109,10 +109,10 @@ jobs:
                   --merge-id=${{ github.event.number }}
                   --namespace=${{ github.repository_owner }}
                   --cx-flow.filter-state=${{ steps.myvars.outputs.state }}
-    #              --cx-flow.filter-status=${{ steps.myvars.outputs.status }}
+                  --cx-flow.filter-severity=${{ steps.myvars.outputs.severity }}
     #              --sca.filter-severity=${{ steps.myvars.outputs.severity }}
+    #              --cx-flow.filter-status=${{ steps.myvars.outputs.status }}
     #              --sca.filter-score=9.0
-    #              --cx-flow.filter-severity=${{ steps.myvars.outputs.severity }}
     #             --cx-flow.filter-category=""
     #             --sca.includeSources=true
     #             --sca.enabledZipScan=true
