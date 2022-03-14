@@ -79,3 +79,5 @@ How to Use/Setup ?
 Get the VulnerableSpring Project from here:
 https://github.com/CSPF-Founder/VulnerableSpring
 
+only show not explotable results in pr deco
+
