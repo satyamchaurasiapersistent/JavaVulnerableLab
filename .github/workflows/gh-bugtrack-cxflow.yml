@@ -45,16 +45,17 @@ jobs:
             cfm: Confirmed
             ne: Not Exploitable
             recurrent: Recurrent
+            new: New
             medium: Medium
         shell: bash
         run:  | 
           echo github_branch ${github_branch#refs/heads/}
           echo state ${cfm}
-          echo status ${recurrent}
+          echo status ${new}
           echo severity ${medium}
           echo "::set-output name=branch::${github_branch#refs/heads/}"
           echo "::set-output name=state::${cfm}"
-          echo "::set-output name=status::${recurrent}"
+          echo "::set-output name=status::${new}"
           echo "::set-output name=severity::${medium}"
           
         id: myvars
@@ -94,7 +95,7 @@ jobs:
     # Select a Checkmarx Preset
           preset: 'Checkmarx Express'
     # Break build based on Checkmarx findings?
-          break_build: false  # optional
+          break_build: true  # optional
     # Bug tracker for the scan results.
           bug_tracker: ${{ inputs.bugtracker}}
     # Incremental Scans?
