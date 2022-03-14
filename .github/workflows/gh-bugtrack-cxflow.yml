@@ -106,7 +106,7 @@ jobs:
                   --namespace=${{ github.repository_owner }}
                   --cx-flow.filter-state=${{steps.myvars.outputs.state}}
                   --cx-flow.filter-status=${{steps.myvars.outputs.status}}
-                  --sca.filter-severity=${{steps.myvars.outputs.severity}}
+                  --sca.filterSeverity=${{steps.myvars.outputs.severity}}
                   --sca.filter-score=9.0
                   --cx-flow.filter-severity=${{steps.myvars.outputs.severity}}
     #             --cx-flow.filter-category=""
