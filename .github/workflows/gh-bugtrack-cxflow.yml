@@ -47,15 +47,16 @@ jobs:
             recurrent: Recurrent
             new: New
             medium: Medium
+            hi_me: High, Medium
         shell: bash
         run:  | 
           echo github_branch ${github_branch#refs/heads/}
           echo state ${cfm}
           echo status ${recurrent}
-          echo severity ${medium}
+          echo severity ${hi_me}
           echo "::set-output name=branch::${github_branch#refs/heads/}"
           echo "::set-output name=state::${cfm}"
-          echo "::set-output name=status::${recurrent}"
+          echo "::set-output name=status::${hi_me}"
           echo "::set-output name=severity::${medium}"
           
         id: myvars
